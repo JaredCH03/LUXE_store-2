@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil | LUXE</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#c9a03d">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="LUXE">
+    <link rel="apple-touch-icon" href="../img/icons/icon-192x192.png">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Gestiona tu perfil en LUXE Store.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Registrar Service Worker -->
+    <script src="../js/pwa.js"></script>
+    
+    <style>
+        .profile-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 2rem;
+        }
+        
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        
+        .profile-info h2 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-info p {
+            color: #666;
+        }
+        
+        .profile-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            color: #c9a03d;
+            border-bottom-color: #c9a03d;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .order-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .order-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .status-completed { background: #4caf50; color: white; }
+        .status-pending { background: #ff9800; color: white; }
+        .status-cancelled { background: #f44336; color: white; }
+        
+        .btn-back {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            background: #f5f5f5;
+            color: #333;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.2s;
+        }
+        
+        .btn-back:hover {
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="logo-icon">✦</span>
+                    <span class="logo-text">LUXE</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../lujo/tienda.html">Lujo</a></li>
+                <li><a href="../electronica/tienda.html">Electrónicos</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="../lujo/tienda.html" class="btn-back" style="margin:0; padding:0.5rem 1rem;">← Volver</a>
+                <button class="cart-btn" id="cartBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar" id="userInitial"></div>
+                <div class="profile-info">
+                    <h2 id="userName"></h2>
+                    <p id="userEmail"></p>
+                    <p>Miembro desde <span id="memberSince"></span></p>
+                </div>
+            </div>
+            
+            <div class="profile-tabs">
+                <button class="tab-btn active" data-tab="profile">Mi Perfil</button>
+                <button class="tab-btn" data-tab="orders">Mis Pedidos</button>
+                <button class="tab-btn" data-tab="security">Seguridad</button>
+            </div>
+            
+            <!-- Tab Perfil -->
+            <div class="tab-content active" id="profile-tab">
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="fullName">Nombre completo</label>
+                        <input type="text" id="fullName" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" required disabled>
+                        <small style="color: #999;">El correo no se puede cambiar</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Opcional">
+                    </div>
+                    
+                    <button type="submit" class="auth-btn">Guardar Cambios</button>
+                </form>
+            </div>
+            
+            <!-- Tab Pedidos -->
+            <div class="tab-content" id="orders-tab">
+                <div id="ordersList"></div>
+            </div>
+            
+            <!-- Tab Seguridad -->
+            <div class="tab-content" id="security-tab">
+                <form id="passwordForm">
+                    <div class="form-group">
+                        <label for="currentPassword">Contraseña actual</label>
+                        <input type="password" id="currentPassword" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newPassword">Nueva contraseña</label>
+                        <input type="password" id="newPassword" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmNewPassword">Confirmar nueva contraseña</label>
+                        <input type="password" id="confirmNewPassword" required>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn">Cambiar Contraseña</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/localStorage.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/perfil.js"></script>
+    <script src="../js/notifications.js"></script>
+</body>
+</html>

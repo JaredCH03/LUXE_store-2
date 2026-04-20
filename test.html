@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test de Redirecciones</title>
+    <style>
+        body { font-family: monospace; padding: 2rem; }
+        .test { margin: 1rem 0; padding: 1rem; border-radius: 10px; }
+        .pass { background: #d4edda; color: #155724; }
+        .fail { background: #f8d7da; color: #721c24; }
+        button { padding: 0.5rem 1rem; margin: 0.5rem; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Test de Redirecciones LUXE</h1>
+    
+    <div id="results"></div>
+    
+    <script>
+        const tests = [
+            { name: 'Landing Page', url: 'index.html' },
+            { name: 'Tienda', url: 'tienda.html' },
+            { name: 'Login', url: 'login.html' },
+            { name: 'Registro', url: 'register.html' },
+            { name: 'Checkout', url: 'checkout.html' },
+            { name: 'Detalle Producto', url: 'product-detail.html' },
+            { name: 'Dashboard', url: 'dashboard/index.html' }
+        ];
+        
+        async function runTests() {
+            const results = document.getElementById('results');
+            
+            for (const test of tests) {
+                try {
+                    const res = await fetch(test.url, { method: 'HEAD' });
+                    const status = res.ok ? 'pass' : 'fail';
+                    results.innerHTML += `
+                        <div class="test ${status}">
+                            ${res.ok ? '✅' : '❌'} ${test.name}: ${test.url} (${res.status})
+                        </div>
+                    `;
+                } catch (e) {
+                    results.innerHTML += `
+                        <div class="test fail">
+                            ❌ ${test.name}: ${test.url} (Error: ${e.message})
+                        </div>
+                    `;
+                }
+            }
+        }
+        
+        runTests();
+    </script>
+</body>
+</html>

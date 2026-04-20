@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra | LUXE</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/checkout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#c9a03d">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="LUXE">
+    <link rel="apple-touch-icon" href="../img/icons/icon-192x192.png">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Finaliza tu compra en LUXE Store de forma segura.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Registrar Service Worker -->
+    <script src="../js/pwa.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="logo-icon">✦</span>
+                    <span class="logo-text">LUXE</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../lujo/tienda.html">Tienda</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h1>Finalizar Compra</h1>
+            <p>Completa tus datos para realizar el pedido</p>
+        </div>
+
+        <div class="payment-form-container">
+            <form id="paymentForm">
+                <div class="form-section">
+                    <h3>Información de Contacto</h3>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Dirección de Envío</h3>
+                    <div class="form-group">
+                        <label for="fullName">Nombre completo</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Dirección</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">Ciudad</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zipCode">Código Postal</label>
+                            <input type="text" id="zipCode" name="zipCode" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Método de Pago</h3>
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <input type="radio" id="stripe" name="paymentMethod" value="stripe" checked>
+                            <label for="stripe">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                    <path d="M13.976 9.15c-2.172-.806-3.356-1.345-3.356-2.418 0-1.075 1.184-1.747 3.008-1.747 2.69 0 3.627 1.075 3.627 1.075l1.614-4.032S17.224 1 13.628 1C9.493 1 6.01 3.053 6.01 6.732c0 3.09 2.69 4.837 5.912 5.912 2.152.806 3.356 1.345 3.356 2.418 0 1.075-1.184 1.747-3.008 1.747-2.69 0-3.627-1.075-3.627-1.075l-1.614 4.032S9.493 23 13.628 23c4.135 0 7.618-2.053 7.618-5.732 0-3.09-2.69-4.837-5.912-5.912"/>
+                                </svg>
+                                Stripe
+                            </label>
+                        </div>
+                        <div class="payment-method">
+                            <input type="radio" id="creditCard" name="paymentMethod" value="credit_card">
+                            <label for="creditCard">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor">
+                                    <rect x="2" y="5" width="20" height="14" rx="2" stroke-width="2"/>
+                                    <path d="M2 10h20" stroke-width="2"/>
+                                </svg>
+                                Tarjeta
+                            </label>
+                        </div>
+                        <div class="payment-method">
+                            <input type="radio" id="paypal" name="paymentMethod" value="paypal">
+                            <label for="paypal">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                    <path d="M20.067 8.478c.492.88.556 1.852.179 2.74-.376.888-1.073 1.598-1.955 1.995-1.205.543-2.589.455-3.9.455-1.31 0-2.694.088-3.9-.455-.882-.397-1.579-1.107-1.955-1.995-.377-.888-.313-1.86.179-2.74.492-.88 1.273-1.5 2.194-1.744 1.228-.326 2.52-.326 3.826-.326 1.306 0 2.598 0 3.826.326.921.244 1.702.864 2.194 1.744z"/>
+                                </svg>
+                                PayPal
+                            </label>
+                        </div>
+                        <div class="payment-method">
+                            <input type="radio" id="bankTransfer" name="paymentMethod" value="transfer">
+                            <label for="bankTransfer">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor">
+                                    <rect x="2" y="6" width="20" height="12" rx="1" stroke-width="2"/>
+                                    <path d="M2 10h20" stroke-width="2"/>
+                                    <path d="M7 15h3" stroke-width="2"/>
+                                </svg>
+                                Transferencia
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cardFields" class="form-section" style="display: none;">
+                    <h3>Datos de Tarjeta</h3>
+                    <div class="form-group">
+                        <label for="cardNumber">Número de tarjeta</label>
+                        <div class="card-input">
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            <div class="card-icons" id="cardIcons">
+                                <span>💳</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Fecha expiración</label>
+                            <input type="text" id="expiryDate" placeholder="MM/AA" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" maxlength="4">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardName">Nombre en tarjeta</label>
+                        <input type="text" id="cardName" placeholder="Como aparece en la tarjeta">
+                    </div>
+                </div>
+
+                <button type="submit" class="pay-btn" id="payBtn">Pagar ahora</button>
+            </form>
+        </div>
+
+        <div class="order-summary">
+            <h3>Resumen del Pedido</h3>
+            <div id="orderItems" class="order-items"></div>
+            <div class="order-totals">
+                <div class="total-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="total-row">
+                    <span>Envío</span>
+                    <span>$10.00</span>
+                </div>
+                <div class="total-row total">
+                    <span>Total</span>
+                    <span id="total">$0.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">✦ LUXE</span>
+                <p>Elegancia y sofisticación para quienes aprecian lo excepcional.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="../lujo/tienda.html">Lujo</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contacto</h4>
+                <p>contacto@luxe.com</p>
+                <p>+505 8935-6363</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LUXE. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/localStorage.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/payment.js"></script>
+    <script src="../js/checkout.js"></script>
+    <script src="../js/notifications.js"></script>
+</body>
+</html>

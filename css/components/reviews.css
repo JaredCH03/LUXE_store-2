@@ -1,0 +1,259 @@
+/* =====================================================
+   SECCIÓN DE RESEÑAS - DISEÑO MINIMALISTA
+   ===================================================== */
+
+.reviews-section-minimal {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.reviews-container-minimal {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.reviews-header-minimal {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.reviews-header-minimal h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.rating-summary-minimal {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.rating-number-minimal {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.rating-stars-minimal {
+    display: flex;
+    gap: 0.2rem;
+    color: #c9a03d;
+    font-size: 1.1rem;
+}
+
+.rating-count-minimal {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Formulario */
+.review-form-minimal {
+    background: #fafaf8;
+    border-radius: 16px;
+    padding: 1.8rem;
+    margin-bottom: 2.5rem;
+}
+
+.form-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 1.2rem;
+}
+
+.rating-selector-minimal {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.rating-prompt {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.stars-input-minimal {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.stars-input-minimal button {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.15s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.stars-input-minimal button:hover,
+.stars-input-minimal button.active {
+    color: #c9a03d;
+}
+
+.review-textarea-minimal {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    resize: vertical;
+    min-height: 100px;
+    background: white;
+    transition: border-color 0.2s;
+    margin-bottom: 1.2rem;
+}
+
+.review-textarea-minimal:focus {
+    outline: none;
+    border-color: #c9a03d;
+}
+
+.review-textarea-minimal::placeholder {
+    color: #aaa;
+}
+
+.submit-review-btn-minimal {
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 40px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.submit-review-btn-minimal:hover {
+    background: #c9a03d;
+}
+
+.submit-review-btn-minimal:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.login-prompt-minimal {
+    text-align: center;
+    padding: 1.5rem;
+    background: #fafaf8;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.login-prompt-minimal a {
+    color: #c9a03d;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Feed de reseñas */
+.reviews-feed-minimal {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.review-card-minimal {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.review-card-minimal:last-child {
+    border-bottom: none;
+}
+
+.review-header-minimal {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.review-avatar-minimal {
+    width: 36px;
+    height: 36px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.review-meta-minimal {
+    flex: 1;
+}
+
+.review-user-minimal {
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.review-date-minimal {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 0.2rem;
+}
+
+.review-rating-minimal {
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+.review-comment-minimal {
+    color: #444;
+    line-height: 1.6;
+    margin-top: 0.8rem;
+    padding-left: 3.2rem;
+}
+
+.empty-reviews-minimal {
+    text-align: center;
+    padding: 3rem;
+    color: #999;
+}
+
+/* Estrellas interactivas */
+.stars-input-minimal button {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.15s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.stars-input-minimal button:hover,
+.stars-input-minimal button.active {
+    color: #c9a03d !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .reviews-header-minimal {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .review-comment-minimal {
+        padding-left: 0;
+        margin-top: 1rem;
+    }
+}

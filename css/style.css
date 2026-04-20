@@ -1,0 +1,24 @@
+/* =====================================================
+   LUXE STORE - ESTILOS PRINCIPALES (MÓDULOS)
+   ===================================================== */
+
+/* Base */
+@import url('base/reset.css');
+@import url('base/utilities.css');
+
+/* Componentes */
+@import url('components/navbar.css');
+@import url('components/search.css');
+@import url('components/product-card.css');
+@import url('components/cart.css');
+@import url('components/reviews.css');
+@import url('components/wishlist.css');
+@import url('components/filters.css');
+@import url('components/footer.css');
+
+/* Páginas */
+@import url('pages/tienda.css');
+@import url('pages/product-detail.css');
+
+/* Responsive */
+@import url('responsive/mobile.css');

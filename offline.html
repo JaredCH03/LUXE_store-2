@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin conexión | LUXE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .offline-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: white;
+        }
+        .offline-card {
+            max-width: 500px;
+            padding: 3rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .offline-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+        }
+        .offline-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #c9a03d;
+        }
+        .offline-text {
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        .offline-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #c9a03d;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .offline-btn:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-card">
+            <div class="offline-icon">📴</div>
+            <h1 class="offline-title">Sin conexión</h1>
+            <p class="offline-text">Parece que no tienes conexión a internet. Algunas funciones pueden no estar disponibles.</p>
+            <a href="/" class="offline-btn" onclick="window.location.reload()">Reintentar</a>
+        </div>
+    </div>
+</body>
+</html>

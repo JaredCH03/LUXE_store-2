@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar Iconos PWA - LUXE</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1a1a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            color: #c9a03d;
+            margin-bottom: 20px;
+        }
+        .preview {
+            margin: 30px 0;
+        }
+        canvas {
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: #1a1a1a;
+        }
+        button {
+            background: #c9a03d;
+            color: #1a1a1a;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+        }
+        .sizes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .size-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .size-btn:hover {
+            background: #444;
+        }
+        .instructions {
+            color: #999;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        a {
+            color: #c9a03d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✦ Generar Iconos PWA para LUXE</h1>
+        <p>Haz clic en cada tamaño para descargar el icono correspondiente</p>
+        
+        <div class="preview">
+            <canvas id="iconCanvas" width="512" height="512"></canvas>
+        </div>
+        
+        <div class="sizes">
+            <button class="size-btn" onclick="downloadIcon(72)">72x72</button>
+            <button class="size-btn" onclick="downloadIcon(96)">96x96</button>
+            <button class="size-btn" onclick="downloadIcon(128)">128x128</button>
+            <button class="size-btn" onclick="downloadIcon(144)">144x144</button>
+            <button class="size-btn" onclick="downloadIcon(152)">152x152</button>
+            <button class="size-btn" onclick="downloadIcon(192)">192x192</button>
+            <button class="size-btn" onclick="downloadIcon(384)">384x384</button>
+            <button class="size-btn" onclick="downloadIcon(512)">512x512</button>
+        </div>
+        
+        <button onclick="downloadAllIcons()">📦 Descargar Todos los Iconos</button>
+        
+        <div class="instructions">
+            <p>Después de descargar, coloca los archivos en:</p>
+            <code style="background:#333; padding:5px 10px; border-radius:5px;">frontend/img/icons/</code>
+        </div>
+    </div>
+
+    <script>
+        // Dibujar el icono base
+        function drawIcon(ctx, size) {
+            const center = size / 2;
+            
+            // Fondo
+            ctx.fillStyle = '#1a1a1a';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Borde dorado sutil
+            ctx.strokeStyle = '#c9a03d';
+            ctx.lineWidth = size * 0.02;
+            ctx.strokeRect(size * 0.05, size * 0.05, size * 0.9, size * 0.9);
+            
+            // Estrella/logo
+            ctx.font = `bold ${size * 0.4}px 'Inter', 'Segoe UI', sans-serif`;
+            ctx.fillStyle = '#c9a03d';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('✦', center, size * 0.45);
+            
+            // Texto LUXE
+            ctx.font = `bold ${size * 0.12}px 'Inter', 'Segoe UI', sans-serif`;
+            ctx.fillStyle = '#c9a03d';
+            ctx.fillText('LUXE', center, size * 0.75);
+        }
+        
+        // Dibujar preview
+        const canvas = document.getElementById('iconCanvas');
+        const ctx = canvas.getContext('2d');
+        drawIcon(ctx, 512);
+        
+        // Función para descargar un icono de tamaño específico
+        function downloadIcon(size) {
+            const downloadCanvas = document.createElement('canvas');
+            downloadCanvas.width = size;
+            downloadCanvas.height = size;
+            const downloadCtx = downloadCanvas.getContext('2d');
+            drawIcon(downloadCtx, size);
+            
+            const link = document.createElement('a');
+            link.download = `icon-${size}x${size}.png`;
+            link.href = downloadCanvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Descargar todos los iconos
+        async function downloadAllIcons() {
+            const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+            
+            for (const size of sizes) {
+                downloadIcon(size);
+                await new Promise(resolve => setTimeout(resolve, 200));
+            }
+            
+            alert('✅ Todos los iconos se han descargado. Colócalos en frontend/img/icons/');
+        }
+    </script>
+</body>
+</html>
